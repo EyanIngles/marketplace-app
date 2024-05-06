@@ -11,8 +11,6 @@ const dispatch = useDispatch();
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {count}
-        <button onClick={() => dispatch(increment())}>increment</button>
-        <button onClick={() => dispatch(decrement())}>decrement</button>
       </header>
     </div>
   );
