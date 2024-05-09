@@ -1,0 +1,116 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Styles for the container of the navigation tabs */
+.nav-tabs {
+  align-content:center;
+  border-bottom: var(--bs-border-width) solid #e0e0e0; /* Light grey border bottom for the navigation tabs */
+  border-radius: var(--bs-border-radius); /* Border radius for a rounded appearance */
+}
+
+/* Styles for individual navigation links within the navigation tabs */
+.nav-tabs .nav-link {
+  padding: 0.5rem 1rem; /* Padding for the navigation links */
+  color: #007bff; /* Light blue color for the navigation links */
+  text-decoration: none; /* Remove default underline */
+  transition: border-color 0.3s ease; /* Add smooth transition for border color change */
+}
+
+/* Hover styles for navigation links */
+.nav-tabs .nav-link:hover {
+  border-color: #b3d7ff #b3d7ff #007bff; /* Light blue border color on hover */
+}
+
+/* Active tab styles */
+.nav-tabs .nav-link.active {
+  color: #007bff; /* Light blue color for active tab */
+  background-color: #f5f5f5; /* Light grey background color for active tab */
+  border-color: #e0e0e0 #e0e0e0 #f5f5f5; /* Light grey border color for active tab */
+}
+
+
+/* Container for the navigation tabs */
+/* Styles for the container of the navigation tabs */
+/* Container for the navigation tabs */
+/* Container for the navigation tabs */
+.nav {
+  display: flex;
+  justify-content: center; /* Center the tabs horizontally */
+  list-style: none;
+  padding: 0 50px; /* Add padding to the left and right */
+}
+
+/* Individual navigation tab styles */
+.nav-link {
+  padding: 15px 30px; /* Increase padding for larger tabs */
+  font-weight: bold; /* Make the font weight bold */
+  color: #000; /* Black color for the navigation links */
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s ease; /* Add smooth transition for color change */
+  margin: 0 1px; /* Add margin between tabs */
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #666; /* Darker grey color on hover/focus */
+}
+
+.nav-link:disabled {
+  color: #999; /* Lighter grey color for disabled links */
+}
+
+/* Active tab styles */
+.nav-link.active {
+  color: #007bff; /* Light blue color for active tab */
+  border-bottom: 3px solid #007bff; /* Add bottom border for active tab */
+}
+/* Assuming you have a container wrapping the Cards */
+.card-container {
+  display: flex; /* Use flexbox */
+  flex-wrap: wrap; /* Allow cards to wrap to the next line if there's not enough space */
+  justify-content: space-between; /* Distribute space between cards */
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 50px;
+  border-width: 100%;
+
+}
+
+/* Style for individual Card components */
+.card {
+  flex: 0 0 calc(33.333% - 20px); /* Set flex-basis to one-third of the container width with some spacing */
+  margin-bottom: 20px; /* Add margin between cards */
+  border: 1px solid #ced4da; /* Add a 1px solid border with a neutral color */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  overflow: hidden; /* Ensure the border doesn't extend beyond the card */
+}
+.button {
+  padding: 20px;
+}

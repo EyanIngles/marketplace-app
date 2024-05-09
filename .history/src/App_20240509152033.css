@@ -1,0 +1,89 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Styles for the container of the navigation tabs */
+.nav-tabs {
+  border-bottom: var(--bs-border-width) solid #e0e0e0; /* Light grey border bottom for the navigation tabs */
+  border-radius: var(--bs-border-radius); /* Border radius for a rounded appearance */
+}
+
+/* Styles for individual navigation links within the navigation tabs */
+.nav-tabs .nav-link {
+  padding: 0.5rem 1rem; /* Padding for the navigation links */
+  color: #007bff; /* Light blue color for the navigation links */
+  text-decoration: none; /* Remove default underline */
+  transition: border-color 0.3s ease; /* Add smooth transition for border color change */
+}
+
+/* Hover styles for navigation links */
+.nav-tabs .nav-link:hover {
+  border-color: #b3d7ff #b3d7ff #007bff; /* Light blue border color on hover */
+}
+
+/* Active tab styles */
+.nav-tabs .nav-link.active {
+  color: #007bff; /* Light blue color for active tab */
+  background-color: #f5f5f5; /* Light grey background color for active tab */
+  border-color: #e0e0e0 #e0e0e0 #f5f5f5; /* Light grey border color for active tab */
+}
+
+
+/* Container for the navigation tabs */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 20px; /* Add some space below the navigation tabs */
+  padding-left: 0;
+}
+
+/* Individual navigation tab styles */
+.nav-link {
+  padding: 10px 15px; /* Increase padding for better touch interaction */
+  font-weight: bold; /* Make the font weight bold */
+  color: var(--bs-link-color);
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s ease; /* Add smooth transition for color change */
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--bs-link-hover-color); /* Change color on hover/focus */
+}
+
+.nav-link:disabled {
+  color: var(--bs-secondary-color); /* Style disabled links */
+}
+
+/* Active tab styles */
+.nav-link.active {
+  color: var(--bs-emphasis-color); /* Change color for active tab */
+  border-bottom: 3px solid var(--bs-emphasis-color); /* Add bottom border for active tab */
+}
