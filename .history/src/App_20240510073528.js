@@ -38,8 +38,8 @@ const dispatch = useDispatch();
         className='nav'>
         </Tab>
     </Tabs>
-    <div className="card-container"
-    style={{ margin: '20px auto' }}>
+    <div className="card-container">
+
 <Card className="card">
   <Card.Img variant="top" src="holder.js/100px180" />
   <Card.Body>
@@ -49,8 +49,7 @@ const dispatch = useDispatch();
       bulk of the card's content.
     </Card.Text>
     <Button variant="primary"
-    className='button'
-    style={{ width:'100%', margin:'1px' }}>Go somewhere</Button>
+    className='button'>Go somewhere</Button>
   </Card.Body>
 </Card>
 
@@ -63,8 +62,7 @@ const dispatch = useDispatch();
       bulk of the card's content.
     </Card.Text>
     <Button variant="primary"
-    className='button'
-    style={{ width:'100%', margin:'1px' }}>Go somewhere</Button>
+    className='button'>Go somewhere</Button>
   </Card.Body>
 </Card>
 
@@ -78,7 +76,7 @@ const dispatch = useDispatch();
     </Card.Text>
     <Button variant="primary"
     className='button'
-    style={{ width:'100%', margin:'1px' }}>Go somewhere</Button>
+    style={{ width:'100%', padding:'10px' }}>Go somewhere</Button>
   </Card.Body>
 </Card>
 </div>

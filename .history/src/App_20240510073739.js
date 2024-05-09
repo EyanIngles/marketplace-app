@@ -1,5 +1,45 @@
-<div className="card-container"
-    style={{ margin: '20px auto' }}>
+import logo from './logo.svg';
+import './App.css';
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./features/counter/counterSlice";
+
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
+
+function App() {
+const count = useSelector((state) => state.counter.value);
+const dispatch = useDispatch();
+  return (
+    <div className="App">
+      <header >
+        <h1>NFT Marketplace</h1>
+      </header>
+      <Tabs
+      defaultActiveKey="profile"
+      id="justify-tab-example"
+      className="my-3"
+      justify>
+        <Tab
+        eventKey="home"
+        title="List"
+        className='nav'>
+        </Tab>
+        <Tab eventKey="profile"
+        title="Buy"
+        className='nav'
+        >
+        </Tab>
+        <Tab eventKey="longer-tab"
+        title="Mint"
+        className='nav'>
+        </Tab>
+    </Tabs>
+    <div className="card-container"
+    style={{ margin: '10px' }}>
 <Card className="card">
   <Card.Img variant="top" src="holder.js/100px180" />
   <Card.Body>
@@ -42,3 +82,8 @@
   </Card.Body>
 </Card>
 </div>
+    </div>
+  );
+}
+
+export default App;
