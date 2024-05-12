@@ -1,12 +1,16 @@
+import logo from './logo.svg';
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
-// bootstrap imports
-import { Card, Button, Tab, Tabs } from 'react-bootstrap';
+import { increment, decrement } from "./features/counter/counterSlice";
 
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
-import { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
-// contract imports
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
+import { useState } from 'react';
+import {ethers} from 'ethers';
 import NFT_ABI from './abis/NFT_ABI.json'
 import MARKETPLACE_ABI from './abis/MARKETPLACE_ABI.json';
 import config from './config.json'
@@ -15,42 +19,51 @@ import config from './config.json'
 
 
 function App() {
-//const count = useSelector((state) => state.setAccount.value);
+const count = useSelector((state) => state.counter.value);
 const dispatch = useDispatch();
-// use state for loading account and balance
-const [account, setAccount] = useState(null);
-const [balance, setBalance] = useState(null);
+//connecting to meta mask, but having issues with ethers.
+
 
 const [isLoading, setIsLoading] = useState(true)
+const [account, setAccount] = useState(null)
+const [nft, setNft] = useState({})
+const [marketplace, setMarketplace] = useState({})
 
-const loadBlockchain = async () => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
-//connecting to meta mask, but having issues with ethers.
+// metamask provider connect
+const web3Handler = async () => {
   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-  const account = accounts[0];
-  setAccount(account);
-
-  // load account balance in ether
-  let balance = await provider.getBalance(account)
-  balance = ethers.formatEther(balance);
-  setBalance(balance)
-  // finish loading so set isLoading to false
-  setIsLoading(false);
+  setAccount(accounts[0]);
+  if (window.ethereum) {
+    // Use injected provider if available
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    // Get signer
+    const signer = provider.getSigner();
+    loadContracts(signer);
+  } else {
+    console.error("Web3 injection not available. Please install MetaMask or another Web3 provider.");
   }
+}
 
-  // useEffect to load blockchain and access blockchain data
-  useEffect(() => {
-    if(isLoading) {
-      loadBlockchain()
+
+// connecting to contracts via web3
+const loadContracts = async (signer) => {
+    try {
+      const marketplace = new provider.Contract(config.marketplace.address, MARKETPLACE_ABI, signer);
+      setMarketplace(marketplace);
+      const nft = new provider.Contract(config.nft.address, NFT_ABI, signer);
+      setNft(nft);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error loading contracts:', error);
+      // Handle error (e.g., display a message to the user)
     }
-  }, [isLoading])
+  };
+
 
   return (
     <div className="App">
       <header >
-        <h1>NFT Marketplace</h1><Button onClick={console.log("wallet connect")}></Button>
-        <p>Account: {account}</p>
-        <p>Account Balance: {balance}</p>
+        <h1>NFT Marketplace</h1><Button onClick={web3Handler}>connect</Button>
       </header>
       <Tabs
       defaultActiveKey="profile"

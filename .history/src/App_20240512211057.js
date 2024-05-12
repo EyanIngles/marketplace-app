@@ -1,12 +1,13 @@
+import logo from './logo.svg';
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./features/counter/counterSlice";
 // bootstrap imports
 import { Card, Button, Tab, Tabs } from 'react-bootstrap';
 
 
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-// contract imports
 import NFT_ABI from './abis/NFT_ABI.json'
 import MARKETPLACE_ABI from './abis/MARKETPLACE_ABI.json';
 import config from './config.json'
@@ -15,7 +16,7 @@ import config from './config.json'
 
 
 function App() {
-//const count = useSelector((state) => state.setAccount.value);
+//const count = useSelector((state) => state.counter.value);
 const dispatch = useDispatch();
 // use state for loading account and balance
 const [account, setAccount] = useState(null);

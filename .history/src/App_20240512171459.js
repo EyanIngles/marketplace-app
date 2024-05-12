@@ -1,12 +1,16 @@
+import logo from './logo.svg';
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
-// bootstrap imports
-import { Card, Button, Tab, Tabs } from 'react-bootstrap';
+import { increment, decrement } from "./features/counter/counterSlice";
 
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-// contract imports
 import NFT_ABI from './abis/NFT_ABI.json'
 import MARKETPLACE_ABI from './abis/MARKETPLACE_ABI.json';
 import config from './config.json'
@@ -15,11 +19,9 @@ import config from './config.json'
 
 
 function App() {
-//const count = useSelector((state) => state.setAccount.value);
+//const count = useSelector((state) => state.counter.value);
 const dispatch = useDispatch();
-// use state for loading account and balance
 const [account, setAccount] = useState(null);
-const [balance, setBalance] = useState(null);
 
 const [isLoading, setIsLoading] = useState(true)
 
@@ -30,10 +32,6 @@ const loadBlockchain = async () => {
   const account = accounts[0];
   setAccount(account);
 
-  // load account balance in ether
-  let balance = await provider.getBalance(account)
-  balance = ethers.formatEther(balance);
-  setBalance(balance)
   // finish loading so set isLoading to false
   setIsLoading(false);
   }
@@ -49,8 +47,7 @@ const loadBlockchain = async () => {
     <div className="App">
       <header >
         <h1>NFT Marketplace</h1><Button onClick={console.log("wallet connect")}></Button>
-        <p>Account: {account}</p>
-        <p>Account Balance: {balance}</p>
+        <p>Account:{account}</p>
       </header>
       <Tabs
       defaultActiveKey="profile"

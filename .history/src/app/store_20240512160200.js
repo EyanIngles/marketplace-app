@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import provider from './reducers/provider'
+import counterReducer from '../features/counter/counterSlice'
 
 export default configureStore({
   reducer: {
-    provider,
   }
 })

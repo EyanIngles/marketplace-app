@@ -15,7 +15,7 @@ import config from './config.json'
 
 
 function App() {
-//const count = useSelector((state) => state.setAccount.value);
+const count = useSelector((state) => state.chainId.value);
 const dispatch = useDispatch();
 // use state for loading account and balance
 const [account, setAccount] = useState(null);

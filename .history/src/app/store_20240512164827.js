@@ -3,6 +3,6 @@ import provider from './reducers/provider'
 
 export default configureStore({
   reducer: {
-    provider,
+    provider: reducers,
   }
 })
