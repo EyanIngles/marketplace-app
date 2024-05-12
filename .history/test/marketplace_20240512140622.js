@@ -15,7 +15,7 @@ describe("Deploying Marketplace contract", async () => {
 
     const MARKETPLACE = await ethers.getContractFactory("Marketplace");
     marketplace = await MARKETPLACE.deploy(); // Initialize marketplace
-    console.log(`deployed at :${await marketplace.getAddress()}`)
+    console.log(`deployed at :${await marketplace.address}`)
     const NFT = await ethers.getContractFactory("NFT");
     nft = await NFT.deploy(
       "name",

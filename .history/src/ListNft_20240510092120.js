@@ -1,0 +1,47 @@
+import React from 'react'
+import { useState } from 'react'
+import Carousel from 'react-bootstrap/Carousel';
+import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+import TestImage from './testImage1.png';
+
+const ListNft = () => {
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex) => {
+      setIndex(selectedIndex);
+    };
+  return (
+
+
+
+    <Carousel data-bs-theme="light" activeIndex={index} onSelect={handleSelect}>
+      <Carousel.Item interval={3000} >
+      <Image src={TestImage} alt="First slide" style={{maxWidth:'45%'}}/>
+      <Image src={TestImage} alt="First slide" style={{maxWidth:'45%'}}/>
+        <Carousel.Caption>
+          <h3>First slide NFT</h3>
+          <p>NFT name and price here</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={3000}>
+      <Image src={TestImage} alt="First slide" style={{maxWidth:'45%'}}/>
+      <Image src={TestImage} alt="First slide" style={{maxWidth:'45%'}}/>
+        <Carousel.Caption>
+          <h3>Second slide NFT</h3>
+          <p>NFT name and price here</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <Image src={TestImage} alt="First slide" style={{maxWidth:'45%'}}/>
+      <Image src={TestImage} alt="First slide" style={{maxWidth:'45%'}}/>
+        <Carousel.Caption>
+          <h3>Third slide NFT</h3>
+          <p>NFT name and price here</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+  )
+}
+
+export default ListNft

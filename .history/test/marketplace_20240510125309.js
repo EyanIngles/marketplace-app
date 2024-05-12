@@ -1,6 +1,9 @@
 const { expect } = require('chai');
-const { getValue } = require('@testing-library/user-event/dist/utils');
 const { ethers } = require('hardhat');
+
+const tokens = (n) => { //unable to read parseUnits -- reasoning unknown
+  return ethers.utils.parseUnits(n.toString(), 'ether')
+}
 
 describe("Deploying Marketplace contract", async () => {
 
@@ -15,7 +18,7 @@ describe("Deploying Marketplace contract", async () => {
 
     const MARKETPLACE = await ethers.getContractFactory("Marketplace");
     marketplace = await MARKETPLACE.deploy(); // Initialize marketplace
-    console.log(`deployed at :${await marketplace.getAddress()}`)
+    console.log(`deployed at :${await marketplace.address}`)
     const NFT = await ethers.getContractFactory("NFT");
     nft = await NFT.deploy(
       "name",
@@ -25,8 +28,8 @@ describe("Deploying Marketplace contract", async () => {
       0,
       "testURI.."
     )
-    console.log(`deployed at :${ (await nft.getAddress()).toString()}`)
-    console.log(await deployer.getAddress())
+    console.log(`deployed at :${await nft.address}`)
+    console.log(deployer.address)
 
   });
   it('track the nft args', async () => {
