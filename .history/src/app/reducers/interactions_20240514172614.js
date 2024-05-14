@@ -28,7 +28,7 @@ if(typeof window.ethereum !== 'undefined') {
 
         return account;
     } catch(err) {
-        window.alert('Metamask unable to be located. Please install metamask and try again.')
+        window.alert('err.message, metamask unable to be located. Please install metamask and try again.')
     }
 }
 

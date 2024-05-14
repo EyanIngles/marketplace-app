@@ -2,7 +2,7 @@ import './App.css';
 import { useSelector, useDispatch } from "react-redux";
 import Blockies from 'react-blockies';
 // bootstrap imports
-import { Button, Tab, Tabs } from 'react-bootstrap';
+import { Card, Button, Tab, Tabs } from 'react-bootstrap';
 // page imports
 import BuyNft from './app/pages/BuyNft';
 import ListNft from './app/pages/ListNft';
@@ -17,7 +17,7 @@ import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft } from
 function App() {
   // useSelectors
   // fetching account from useDispatch()
-let account = useSelector(state => state.provider.account);
+const account = useSelector(state => state.provider.account);
 
   // dispatches
 const dispatch = useDispatch();
@@ -31,12 +31,8 @@ const loadBlockchain = async () => {
   const provider = await loadProvider(dispatch)
  // loading network and dispatching the data
   const chainId = await loadNetwork(dispatch, provider)
-  // loadAccount
-    account = await loadAccount(dispatch)
-  // Load account address and reload page when account has been changed.
-    window.ethereum.on('accountsChanged', async () => {
-    account = await loadAccount(dispatch)
-  })
+  // Load account address
+  let account = await loadAccount(dispatch)
 
   // load account balance in ether
   let balance = await provider.getBalance(account)
@@ -48,13 +44,14 @@ const loadBlockchain = async () => {
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-  setIsLoading(false)
+
+  // finish loading so set isLoading to false
+  setIsLoading(false);
   }
 
   // useEffect to load blockchain and access blockchain data
   useEffect(() => {
     if(isLoading) {
-      console.log(account)
       loadBlockchain()
     }
   }, [isLoading])
@@ -62,7 +59,7 @@ const loadBlockchain = async () => {
   return (
     <div className="App">
       <header >
-        <h1>NFT Marketplace</h1><Button>Refresh data</Button><hr></hr>
+        <h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Refresh data</Button><hr></hr>
         { account ? (
           <>
           <h4></h4><Blockies
@@ -72,7 +69,7 @@ const loadBlockchain = async () => {
           Account Balance: {balance}</p><hr></hr>
           </>
         ) : (
-          <><p>Loading... Please Connect Wallet</p></>
+          <><p>loading... please connect wallet</p></>
         )}
         </header>
       <Tabs

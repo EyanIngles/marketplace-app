@@ -9,18 +9,15 @@ import NFT_ABI from '../abis/NFT_ABI.json';
 
 
 export const loadProvider = async (dispatch) => {
-    try{
     const provider = new ethers.BrowserProvider(window.ethereum)
     dispatch(setProvider(provider))
 
     return provider;
-    } catch(err) {
-        window.alert('provider unable to be located')
-    }}
+}
 
 export const loadAccount = async (dispatch) => {
 //connecting to meta mask with a try and catch to catch an error if metamask if not installed
-if(typeof window.ethereum !== 'undefined') {
+if(window.ethereum != 'undefined') {
     try{
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
@@ -28,7 +25,7 @@ if(typeof window.ethereum !== 'undefined') {
 
         return account;
     } catch(err) {
-        window.alert('Metamask unable to be located. Please install metamask and try again.')
+        window.alert(console.log(err.message))
     }
 }
 

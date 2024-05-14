@@ -32,7 +32,7 @@ const loadBlockchain = async () => {
  // loading network and dispatching the data
   const chainId = await loadNetwork(dispatch, provider)
   // loadAccount
-    account = await loadAccount(dispatch)
+  account = await loadAccount(dispatch)
   // Load account address and reload page when account has been changed.
     window.ethereum.on('accountsChanged', async () => {
     account = await loadAccount(dispatch)
@@ -63,17 +63,19 @@ const loadBlockchain = async () => {
     <div className="App">
       <header >
         <h1>NFT Marketplace</h1><Button>Refresh data</Button><hr></hr>
-        { account ? (
-          <>
+        {  useEffect(() => {
+    if(typeof account != 'undefined' ) {
+      <p>Please Connect Wallet</p>
+    } else {
+      <>
           <h4></h4><Blockies
           className='Identicon mx-2'
           seed={account}/>
           <p>Account: {account}<br></br>
           Account Balance: {balance}</p><hr></hr>
           </>
-        ) : (
-          <><p>Loading... Please Connect Wallet</p></>
-        )}
+    }
+  }, [isLoading])}
         </header>
       <Tabs
       defaultActiveKey="profile"

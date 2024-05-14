@@ -32,7 +32,7 @@ const loadBlockchain = async () => {
  // loading network and dispatching the data
   const chainId = await loadNetwork(dispatch, provider)
   // loadAccount
-    account = await loadAccount(dispatch)
+  account = await loadAccount(dispatch)
   // Load account address and reload page when account has been changed.
     window.ethereum.on('accountsChanged', async () => {
     account = await loadAccount(dispatch)

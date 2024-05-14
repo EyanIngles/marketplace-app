@@ -31,14 +31,13 @@ const loadBlockchain = async () => {
   const provider = await loadProvider(dispatch)
  // loading network and dispatching the data
   const chainId = await loadNetwork(dispatch, provider)
-  // loadAccount
-    account = await loadAccount(dispatch)
   // Load account address and reload page when account has been changed.
     window.ethereum.on('accountsChanged', async () => {
     account = await loadAccount(dispatch)
   })
 
   // load account balance in ether
+
   let balance = await provider.getBalance(account)
   balance = ethers.formatEther(balance);
   setBalance(balance)

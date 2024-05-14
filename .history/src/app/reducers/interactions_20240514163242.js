@@ -21,14 +21,16 @@ export const loadProvider = async (dispatch) => {
 export const loadAccount = async (dispatch) => {
 //connecting to meta mask with a try and catch to catch an error if metamask if not installed
 if(typeof window.ethereum !== 'undefined') {
-    try{
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const account = accounts[0];
-        dispatch(setAccount(account));
+    try{new ethers.BrowserProvider(window.ethereum);
+        // It will prompt user for account connections if it isnt connected
+        const signer = await provider.getSigner();
+        console.log("Account:", await signer.getAddress());
+        //const account = accounts[0];
+        //dispatch(setAccount(account));
 
-        return account;
+        //return account;
     } catch(err) {
-        window.alert('Metamask unable to be located. Please install metamask and try again.')
+        window.alert('err.message, metamask unable to be located. Please install metamask and try again.')
     }
 }
 

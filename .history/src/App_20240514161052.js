@@ -17,7 +17,7 @@ import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft } from
 function App() {
   // useSelectors
   // fetching account from useDispatch()
-let account = useSelector(state => state.provider.account);
+const account = useSelector(state => state.provider.account);
 
   // dispatches
 const dispatch = useDispatch();
@@ -31,11 +31,9 @@ const loadBlockchain = async () => {
   const provider = await loadProvider(dispatch)
  // loading network and dispatching the data
   const chainId = await loadNetwork(dispatch, provider)
-  // loadAccount
-    account = await loadAccount(dispatch)
   // Load account address and reload page when account has been changed.
-    window.ethereum.on('accountsChanged', async () => {
-    account = await loadAccount(dispatch)
+  window.ethereum.on('accountsChanged', async () => {
+    let account = await loadAccount(dispatch)
   })
 
   // load account balance in ether
@@ -48,21 +46,22 @@ const loadBlockchain = async () => {
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-  setIsLoading(false)
+
+  // finish loading so set isLoading to false
+  setIsLoading(false);
   }
 
   // useEffect to load blockchain and access blockchain data
   useEffect(() => {
-    if(isLoading) {
-      console.log(account)
+    if(account = 'undefined') {
       loadBlockchain()
     }
-  }, [isLoading])
+  }, [])
 
   return (
     <div className="App">
       <header >
-        <h1>NFT Marketplace</h1><Button>Refresh data</Button><hr></hr>
+        <h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Refresh data</Button><hr></hr>
         { account ? (
           <>
           <h4></h4><Blockies
