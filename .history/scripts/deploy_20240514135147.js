@@ -1,0 +1,34 @@
+const hre = require("hardhat");
+
+async function main() {
+    //sudo coded in user1 address
+    const user1 = "0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"
+
+    const ether = (n) => {
+      return ethers.parseEther(n.toString())
+    }
+
+    const name = 'Ease'
+    const symbol = 'ES'
+    const cost = ether(10)
+    const max_supply = 100
+    const BASE_URI = 'ipfs://QmNdSXfCZeURiUsxRUAKdsn5rBL1Riw5Se2yDxYU97xRsY/'
+
+
+  // Deploy a nft project with limited supply to upload to market place
+  console.log(`Deploying NFT project....`)
+  const NFT = await hre.ethers.getContractFactory("NFT")
+  const nft = await NFT.deploy(name, symbol, cost, max_supply, 0, BASE_URI)
+  console.log(`NFT Deployed!!:${await nft.getAddress()}`)
+  // Deploy nft market place contract
+  console.log(`Deploying Marketplace....`)
+  const MARKETPLACE = await hre.ethers.getContractFactory("Marketplace")
+  const marketplace = await MARKETPLACE.deploy()
+  console.log(`Marketplace Deployed!!: ${await marketplace.getAddress()}`)
+
+
+}
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

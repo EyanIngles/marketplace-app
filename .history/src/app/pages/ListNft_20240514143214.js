@@ -1,0 +1,44 @@
+import React from 'react'
+import { Form , Button } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+
+
+const ListNft = () => {
+  const marketplace = useSelector(state => state.marketplace.contract)
+  const provider = useSelector(state => state.provider.connection)
+
+  const listHandler = async (e) => {
+    e.preventDefault()
+    const signer = await provider.getSigner()
+    //approve nft transfer
+
+    // transfer to marketplace address
+    //let transaction = await marketplace.connect(signer).ListNft(e.target.id(first))
+
+    const nftAddress = e.target.elements.first.value;
+    const tokenId = e.target.elements.second.value;
+    const price = e.target.elements.third.value;
+
+    console.log("NFT Address:", nftAddress);
+    console.log("Token ID:", tokenId);
+    console.log("Price in ETH:", price);
+
+  }
+  return (<>
+    <div className='form-container'>
+    <Form onSubmit={(e) => listHandler(e)}>
+        <Form.Group>
+            <Form.Label> List Your NFT Here!</Form.Label>
+            <Form.Control id='first' type="text" placeholder="NFT address"/><br></br>
+            <Form.Control id='second' type="number" placeholder="Token ID"/><br></br>
+            <Form.Control id='third' type="text" placeholder="Price in Eth" />
+            <br></br>
+            <Button variant="primary" type="submit">List NFT</Button>
+        </Form.Group>
+    </Form>
+    </div>
+    </>
+  )
+}
+
+export default ListNft
