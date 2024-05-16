@@ -8,6 +8,7 @@ import { loadMintNft } from '../reducers/interactions'
 const ListNft = ()  => {
     // use State for mintamount
     const [mintAmount, setMintAmount] = useState(0)
+    const [cost, setCost] = useState(0)
   const dispatch = useDispatch()
 
   const nft = useSelector(state => state.nft.contract)
@@ -17,30 +18,32 @@ const ListNft = ()  => {
   // mint dispatch
   const mintNft = useSelector(state => state.nft.mintNft)
 
+  const nftCostHandler = async () => {
+    cost = await nft.cost()
+    console.log(cost)
+  }
+
   const mintHandler = async (e) => {
     // prevent any auto behaviour from e value.
     e.preventDefault()
 
     // convert form submit to values to use.
-    setMintAmount(1)
+    const amount = e.target.elements.amount.value;
+    setMintAmount(amount)
 
-  // load minting function
-  const mint = await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
+    await mintNft(provider, nft, chainId, mintAmount, dispatch)
 
   }
   return (<>
     <div className='form-container'>
-    <Form onSubmit={mintHandler}>
+    <Form onSubmit={(e) => nftCostHandler(e)}>
         <Form.Group>
             <Form.Label>Mint one of our NFT's here!</Form.Label>
-            <hr></hr>
+            <Form.Control name='mintAmount' type="number" placeholder="How many?"/><br></br>
+            <br></br>
             <Button variant="primary" type="submit">Mint NFT</Button>
         </Form.Group>
     </Form>
-    <div><br></br>
-    <p>preview of nft collection here</p>
-    </div>
-
     </div>
     </>
   )

@@ -34,13 +34,10 @@ const ListNft = ()  => {
         <Form.Group>
             <Form.Label>Mint one of our NFT's here!</Form.Label>
             <hr></hr>
-            <Button variant="primary" type="submit">Mint NFT</Button>
+            <Button variant="primary" type="submit">Mint NFT</Button><br></br>
+            <p>preview of nft collection here</p>
         </Form.Group>
     </Form>
-    <div><br></br>
-    <p>preview of nft collection here</p>
-    </div>
-
     </div>
     </>
   )

@@ -22,7 +22,8 @@ const ListNft = ()  => {
     e.preventDefault()
 
     // convert form submit to values to use.
-    setMintAmount(1)
+    const amount = e.target.elements.amount.value;
+    setMintAmount(amount)
 
   // load minting function
   const mint = await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
@@ -30,17 +31,14 @@ const ListNft = ()  => {
   }
   return (<>
     <div className='form-container'>
-    <Form onSubmit={mintHandler}>
+    <Form onSubmit={(e) => mintHandler(e)}>
         <Form.Group>
             <Form.Label>Mint one of our NFT's here!</Form.Label>
-            <hr></hr>
+            <Form.Control name='mintAmount' type="number" placeholder="How many?"/><br></br>
+            <br></br>
             <Button variant="primary" type="submit">Mint NFT</Button>
         </Form.Group>
     </Form>
-    <div><br></br>
-    <p>preview of nft collection here</p>
-    </div>
-
     </div>
     </>
   )

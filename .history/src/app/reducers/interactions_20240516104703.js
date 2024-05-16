@@ -59,6 +59,7 @@ export const loadNft = async (provider, chainId, dispatch) => {
 
     return nft
 }
+
 export const loadMintNft = async ( provider, nft, chainId, mintAmount, dispatch ) => {
     // getting signer
     const signer = await provider.getSigner()
@@ -67,6 +68,7 @@ export const loadMintNft = async ( provider, nft, chainId, mintAmount, dispatch 
     // Mint NFT
     let transaction = await nft.connect(signer).mint(mintAmount, signer)
     let result = await transaction.wait()
+    await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
 
     dispatch(setMintNft(result))
 }

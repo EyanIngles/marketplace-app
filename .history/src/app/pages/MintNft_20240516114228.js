@@ -37,7 +37,7 @@ const ListNft = ()  => {
             <Button variant="primary" type="submit">Mint NFT</Button>
         </Form.Group>
     </Form>
-    <div><br></br>
+    <div>
     <p>preview of nft collection here</p>
     </div>
 

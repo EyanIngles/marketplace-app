@@ -15,32 +15,28 @@ const ListNft = ()  => {
   const chainId = useSelector(state => state.provider.chainId)
 
   // mint dispatch
-  const mintNft = useSelector(state => state.nft.mintNft)
+  const loadMintNft = useSelector(state => state.nft.mintNft)
 
   const mintHandler = async (e) => {
     // prevent any auto behaviour from e value.
     e.preventDefault()
 
     // convert form submit to values to use.
-    setMintAmount(1)
-
-  // load minting function
-  const mint = await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
+    const amount = e.target.elements.value;
+    console.log(mintAmount)
+    loadMintNft(provider, nft, chainId, mintAmount, dispatch)
 
   }
   return (<>
     <div className='form-container'>
-    <Form onSubmit={mintHandler}>
+    <Form onSubmit={(e) => mintHandler(e)}>
         <Form.Group>
             <Form.Label>Mint one of our NFT's here!</Form.Label>
-            <hr></hr>
+            <Form.Control name='mintAmount' type="number" placeholder="How many?"/><br></br>
+            <br></br>
             <Button variant="primary" type="submit">Mint NFT</Button>
         </Form.Group>
     </Form>
-    <div><br></br>
-    <p>preview of nft collection here</p>
-    </div>
-
     </div>
     </>
   )

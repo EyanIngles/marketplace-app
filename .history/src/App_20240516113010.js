@@ -12,7 +12,7 @@ import MintNft from './app/pages/MintNft';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 // import dispatches
-import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft } from './app/reducers/interactions';
+import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft, loadMintNft } from './app/reducers/interactions';
 
 
 
@@ -27,7 +27,7 @@ const dispatch = useDispatch();
 // useState for loading account and balance
 const [balance, setBalance] = useState(0);
 const [isLoading, setIsLoading] = useState(true)
-
+const [mintAmount, setMintAmount] = useState(0)
 
 
 const loadBlockchain = async () => {
@@ -52,7 +52,8 @@ const loadBlockchain = async () => {
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-
+  // load MintNft from nft store
+  await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
   setIsLoading(false)
   }
 
