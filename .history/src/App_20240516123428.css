@@ -1,0 +1,193 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Styles for the container of the navigation tabs */
+.nav-tabs {
+  align-content:center;
+  border-bottom: var(--bs-border-width) solid #e0e0e0; /* Light grey border bottom for the navigation tabs */
+  border-radius: var(--bs-border-radius); /* Border radius for a rounded appearance */
+}
+
+/* Styles for individual navigation links within the navigation tabs */
+.nav-tabs .nav-link {
+  padding: 0.5rem 1rem; /* Padding for the navigation links */
+  color: #007bff; /* Light blue color for the navigation links */
+  text-decoration: none; /* Remove default underline */
+  transition: border-color 0.3s ease; /* Add smooth transition for border color change */
+}
+
+/* Hover styles for navigation links */
+.nav-tabs .nav-link:hover {
+  border-color: #b3d7ff #b3d7ff #007bff; /* Light blue border color on hover */
+}
+
+/* Active tab styles */
+.nav-tabs .nav-link.active {
+  color: #007bff; /* Light blue color for active tab */
+  background-color: #f5f5f5; /* Light grey background color for active tab */
+  border-color: #e0e0e0 #e0e0e0 #f5f5f5; /* Light grey border color for active tab */
+}
+
+
+/* Container for the navigation tabs */
+/* Styles for the container of the navigation tabs */
+/* Container for the navigation tabs */
+/* Container for the navigation tabs */
+.nav {
+  display: flex;
+  justify-content: center; /* Center the tabs horizontally */
+  list-style: none;
+  padding: 0 50px; /* Add padding to the left and right */
+}
+
+/* Individual navigation tab styles */
+.nav-link {
+  padding: 15px 30px; /* Increase padding for larger tabs */
+  font-weight: bold; /* Make the font weight bold */
+  color: #000; /* Black color for the navigation links */
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s ease; /* Add smooth transition for color change */
+  margin: 0 1px; /* Add margin between tabs */
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #666; /* Darker grey color on hover/focus */
+}
+
+.nav-link:disabled {
+  color: #999; /* Lighter grey color for disabled links */
+}
+
+/* Active tab styles */
+.nav-link.active {
+  color: #007bff; /* Light blue color for active tab */
+  border-bottom: 3px solid #007bff; /* Add bottom border for active tab */
+}
+/* Assuming you have a container wrapping the Cards */
+.card-container {
+  display: flex; /* Use flexbox */
+  flex-wrap: wrap; /* Allow cards to wrap to the next line if there's not enough space */
+  justify-content: space-between; /* Distribute space between cards */
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 50px;
+  border-width: 100%;
+
+}
+
+/* Style for individual Card components */
+.card {
+  flex: 0 0 calc(33.333% - 20px); /* Set flex-basis to one-third of the container width with some spacing */
+  margin-bottom: 20px; /* Add margin between cards */
+  padding-top: 20px; /* Add margin between cards */
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 2px solid #ced4da; /* Add a 1px solid border with a neutral color */
+  border-radius: 20px; /* Add border radius for rounded corners */
+  overflow: hidden; /* Ensure the border doesn't extend beyond the card */
+}
+.button {
+  margin: 20px;
+  --bs-btn-padding-x: 0.75rem;
+  --bs-btn-padding-y: 0.375rem;
+  --bs-btn-font-size: 1rem;
+  --bs-btn-font-weight: 400;
+  --bs-btn-line-height: 1.5;
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-bg: #0000;
+  --bs-btn-border-width: var(--bs-border-width);
+  --bs-btn-border-color: #0000;
+  --bs-btn-border-radius: var(--bs-border-radius);
+  --bs-btn-hover-border-color: #0000;
+  --bs-btn-box-shadow: inset 0 1px 0 #ffffff26, 0 1px 1px rgba(0,0,0,.075);
+  --bs-btn-disabled-opacity: 0.65;
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb),.5);
+  background-color: var(--bs-btn-bg);
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+  border-radius: var(--bs-btn-border-radius);
+  color: var(--bs-btn-color);
+  cursor: pointer;
+  font-size: var(--bs-btn-font-size);
+  font-weight: var(--bs-btn-font-weight);
+  line-height: var(--bs-btn-line-height);
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+  text-align: center;
+  text-decoration: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.button {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0d6efd;
+  --bs-btn-border-color: #0d6efd;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0a58ca;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+}
+
+/* Hover styles */
+.button:hover {
+  border-color: #0000;
+}
+.button:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* Active styles */
+.button:active, .button.active {
+  background-color: #0a58ca;
+  border-color: #0a53be;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+/* Disabled styles */
+.button:disabled, .button.disabled {
+  opacity: 0.65;
+}
+.button:disabled, .button-primary.disabled {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.connect {
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: flex-start; /* Align content to the top */
+    height:20%
+  }
