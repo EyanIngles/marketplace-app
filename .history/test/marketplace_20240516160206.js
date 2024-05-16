@@ -43,7 +43,7 @@ describe("Deploying Marketplace contract", async () => {
     const balanceNFT = await nft.balanceOf(user1)
     const newbalance = { value: balanceNFT }
 
-    console.log(newbalance)
+    console.log(await balanceNFT)
 
   })
   it('lists that minted nft onto the marketplace contract.', async () => {

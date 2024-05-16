@@ -82,8 +82,3 @@ export const loadNftBalance = async (nft, provider, chainId, account, dispatch) 
 
     dispatch(setNftBalance(nftBalance))
 }
-// listnft Loader
-
-
-
-// buyNFT loader

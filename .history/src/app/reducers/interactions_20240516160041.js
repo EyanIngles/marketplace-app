@@ -1,10 +1,11 @@
 import { setAccount, setNetwork, setProvider } from "./provider";
 import { setContract } from "./marketplaceStore";
 import { setMintNft, setNContract, setNftBalance } from './nftStore'
-import { ethers } from "ethers";
+import { ethers, BrowserProvider } from "ethers";
 import config from '../abis/config.json';
 import MARKETPLACE_ABI from '../abis/MARKETPLACE_ABI.json';
 import NFT_ABI from '../abis/NFT_ABI.json';
+import { useState } from 'react'
 
 
 
@@ -66,7 +67,7 @@ export const loadMintNft = async ( provider, nft, chainId, mintAmount, dispatch 
     const cost = await nft.cost()
     mintAmount = 1;
 
-    // Mint NFT (have to pass the cost variable through a value)
+    // Mint NFT
     let transaction = await nft.connect(signer).mint(mintAmount, { value: cost })
     let result = await transaction.wait()
 
@@ -82,8 +83,3 @@ export const loadNftBalance = async (nft, provider, chainId, account, dispatch) 
 
     dispatch(setNftBalance(nftBalance))
 }
-// listnft Loader
-
-
-
-// buyNFT loader

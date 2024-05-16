@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import { Form , Button, Carousel } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
+import { ethers } from 'ethers'
 import { loadMintNft } from '../reducers/interactions'
 import IMAGES1 from './testImages/img1.png'
 import IMAGES2 from './testImages/img2.png'
