@@ -63,9 +63,6 @@ export const loadMintNft = async ( provider, nft, chainId, mintAmount, dispatch 
     // getting signer
     const signer = await provider.getSigner()
     nft = await loadNft(provider, chainId, dispatch)
-    //retrieve the cost of the nft collection
-    const cost = await nft.cost()
-    mintAmount = 1;
 
     // Mint NFT
     let transaction = await nft.connect(signer).mint(mintAmount, signer)
@@ -79,7 +76,10 @@ export const loadNftBalance = async (nft, provider, chainId, account, dispatch) 
     //load account
     account = await loadAccount(dispatch)
 
-    const nftBalance = (await nft.balanceOf(account)).toString();
+    const balance = await nft.getBalance(account)
 
-    dispatch(setNftBalance(nftBalance))
+    dispatch(setNftBalance(balance))
+
+    return balance
+
 }

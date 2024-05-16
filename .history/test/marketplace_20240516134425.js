@@ -40,9 +40,8 @@ describe("Deploying Marketplace contract", async () => {
   it('mints an nft', async () => {
     await nft.connect(user1).mint(1)
     let nft1 = await nft.tokenURI(0)
-    const balanceNFT = (await nft.balanceOf(user1)).toString();
-
-    console.log(await balanceNFT)
+    let balanceNFT = await nft.balanceOf(user1)
+    console.log(balanceNFT)
 
   })
   it('lists that minted nft onto the marketplace contract.', async () => {

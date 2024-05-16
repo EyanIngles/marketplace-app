@@ -12,7 +12,7 @@ import MintNft from './app/pages/MintNft';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 // import dispatches
-import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft, loadNftBalance } from './app/reducers/interactions';
+import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft } from './app/reducers/interactions';
 
 
 
@@ -52,42 +52,32 @@ const loadBlockchain = async () => {
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-   const cost = await nft.cost()
-   console.log("cost of nft", cost)
-  if(nft) {
-    //get NFT balance or how many the account has in NFT's and display it on the screen.
-    const nftBalance = await loadNftBalance(nft, provider, chainId, account, dispatch)
-  } else {
-    window.alert('Error message: unable to load NFT contract and retrieve balance')
-    setIsLoading(false)
-  }
-
 
   setIsLoading(false)
   }
 
   // useEffect to load blockchain and access blockchain data
   useEffect(() => {
-    if(isLoading) {
+    if(isLoading)? {
       console.log(account)
       loadBlockchain()
     }
-  }, [isLoading, account])
+  }, [isLoading])
 
   return (
     <div className="App">
       <header >
+        <h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Refresh data</Button><hr></hr>
         { account ? (
           <>
-          <h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Refresh Blockchain</Button><hr></hr>
           <h4></h4><Blockies
           className='Identicon mx-2'
           seed={account}/>
-          <p>Account: {account.slice(0,6)}...{account.slice(37)}<br></br>
-          Account Balance: {balance} ETH</p><hr></hr>
+          <p>Account: {account}<br></br>
+          Account Balance: {balance}</p><hr></hr>
           </>
         ) : (
-          <><h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Connect Wallet</Button><hr></hr></>
+          <><p>Loading... Please Connect Wallet</p></>
         )}
         </header>
       <Tabs

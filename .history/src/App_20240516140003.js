@@ -52,11 +52,9 @@ const loadBlockchain = async () => {
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-   const cost = await nft.cost()
-   console.log("cost of nft", cost)
-  if(nft) {
+  if(typeof nft === 'underfined') {
     //get NFT balance or how many the account has in NFT's and display it on the screen.
-    const nftBalance = await loadNftBalance(nft, provider, chainId, account, dispatch)
+    const NFTbalance = await loadNftBalance(nft, provider, chainId, account, dispatch)
   } else {
     window.alert('Error message: unable to load NFT contract and retrieve balance')
     setIsLoading(false)
@@ -83,8 +81,8 @@ const loadBlockchain = async () => {
           <h4></h4><Blockies
           className='Identicon mx-2'
           seed={account}/>
-          <p>Account: {account.slice(0,6)}...{account.slice(37)}<br></br>
-          Account Balance: {balance} ETH</p><hr></hr>
+          <p>Account: {account}<br></br>
+          Account Balance: {balance}</p><hr></hr>
           </>
         ) : (
           <><h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Connect Wallet</Button><hr></hr></>

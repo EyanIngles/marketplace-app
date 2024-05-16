@@ -5,7 +5,8 @@ export const nft = createSlice({
     initialState: {
         nContract: 0,
         mintNft: [],
-        nftBalance: 0
+        nftBalance: 0,
+        mintAmount: 0
     },
     reducers: {
         setNContract: (state, action) => {

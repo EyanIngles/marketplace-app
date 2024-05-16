@@ -52,11 +52,11 @@ const loadBlockchain = async () => {
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-   const cost = await nft.cost()
-   console.log("cost of nft", cost)
-  if(nft) {
+   const cost = await nft.cost().toString()
+   console.log(cost)
+  if(typeof nft === 'underfined') {
     //get NFT balance or how many the account has in NFT's and display it on the screen.
-    const nftBalance = await loadNftBalance(nft, provider, chainId, account, dispatch)
+    const NFTbalance = await loadNftBalance(nft, provider, chainId, account, dispatch)
   } else {
     window.alert('Error message: unable to load NFT contract and retrieve balance')
     setIsLoading(false)

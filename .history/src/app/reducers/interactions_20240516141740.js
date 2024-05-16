@@ -79,7 +79,7 @@ export const loadNftBalance = async (nft, provider, chainId, account, dispatch) 
     //load account
     account = await loadAccount(dispatch)
 
-    const nftBalance = (await nft.balanceOf(account)).toString();
+    const nftBalance = await nft.balanceOf(account).getNumber()
 
     dispatch(setNftBalance(nftBalance))
 }

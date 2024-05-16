@@ -3,14 +3,14 @@ import { Form , Button, Carousel } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { ethers } from 'ethers'
 import { loadMintNft } from '../reducers/interactions'
-import IMAGES1 from './testImages/testImage1.png'
-//import IMAGES2 from './testImages/2.test.png'
-//import IMAGES3 from './testImages/8.test.png'
-//import IMAGES4 from './testImages/12.test.png'
-//import IMAGES5 from './testImages/10.test.png'
-//import IMAGES6 from './testImages/2.test.png'
-//import IMAGES7 from './testImages/18.test.png'
-//import IMAGES8 from './testImages/20.test.png'
+import IMAGES1 from './testImages/1.test.png'
+import IMAGES2 from './testImages/2.test.png'
+import IMAGES3 from './testImages/8.test.png'
+import IMAGES4 from './testImages/12.test.png'
+import IMAGES5 from './testImages/10.test.png'
+import IMAGES6 from './testImages/2.test.png'
+import IMAGES7 from './testImages/18.test.png'
+import IMAGES8 from './testImages/20.test.png'
 
 
 const MintNFT = ()  => {
@@ -48,19 +48,19 @@ const MintNFT = ()  => {
     <div><br></br>
     <Carousel>
     <Carousel.Item interval={1500}>
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES5} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES6} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES7} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES8} text="First slide" />
         <Carousel.Caption>
           <h2>DAPP PUNKS</h2>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1500}>
         <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES2} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES3} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES4} text="First slide" />
         <Carousel.Caption>
           <h2>DAPP PUNKS</h2>
         </Carousel.Caption>
