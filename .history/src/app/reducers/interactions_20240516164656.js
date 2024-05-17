@@ -103,7 +103,7 @@ export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, 
     const listNFT = await marketplace.connect(signer).listNFT(nftAddress, tokenId, price)
     await listNFT.wait()
 
-    const listedNft = await listNFT
+    const listedNft = 1
     dispatch(setListNFT(listedNft))
 }
 

@@ -20,7 +20,7 @@ const ListNft = () => {
     let nft = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
     let inputPrice = e.target.elements.third.value;
-    let price = ethers.parseEther(inputPrice).toString()
+    let price = { value :(ethers.parseEther(inputPrice).toString())}
     console.log(price)
 
 

@@ -14,13 +14,13 @@ const ListNft = () => {
 
   const listHandler = async (e) => {
     // prevent any auto behaviour from e value.
-    e.preventDefault()
 
     // convert form submit to values to use.
     let nft = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
     let inputPrice = e.target.elements.third.value;
-    let price = ethers.parseEther(inputPrice).toString()
+    const outputPrice = ethers.parseEther(inputPrice).toString()
+    const price = ({ value: outputPrice })
     console.log(price)
 
 

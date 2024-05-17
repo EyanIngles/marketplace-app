@@ -100,7 +100,7 @@ export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, 
     const approveNft = await nft.connect(signer).approve(marketplaceAddress, tokenId)
     await approveNft.wait()
     // marketplace list nft
-    const listNFT = await marketplace.connect(signer).listNFT(nftAddress, tokenId, price)
+    const listNFT = await marketplace.connect(signer).listNFT(nftAddress, tokenId, {value : price})
     await listNFT.wait()
 
     const listedNft = await listNFT

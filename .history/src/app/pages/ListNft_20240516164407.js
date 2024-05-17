@@ -1,15 +1,12 @@
 import React from 'react'
 import { Form , Button } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { ethers } from 'ethers'
-import { loadListNft } from '../reducers/interactions'
 
 
 const ListNft = () => {
-  const dispatch = useDispatch()
-
-  const chainId = useSelector(state => state.provider.chainId)
   const marketplace = useSelector(state => state.marketplace.contract)
+  const nft = useSelector(state => state.nft.contract)
   const provider = useSelector(state => state.provider.connection)
 
   const listHandler = async (e) => {
@@ -17,17 +14,21 @@ const ListNft = () => {
     e.preventDefault()
 
     // convert form submit to values to use.
-    let nft = e.target.elements.first.value;
+    let nftAddress = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
-    let inputPrice = e.target.elements.third.value;
-    let price = ethers.parseEther(inputPrice).toString()
-    console.log(price)
+    let price = e.target.elements.third.value;
+    price = ethers.parseEther(price)
+
+    console.log("NFT Address:", nftAddress);
+    console.log("Token ID:", tokenId);
+    console.log("Price in ETH:", price);
 
 
-    await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
+
+    // transfer to marketplace address
+
 
   }
-  listHandler().catch(console.error);
   return (<>
     <div className='form-container'>
     <Form onSubmit={(e) => listHandler(e)}>

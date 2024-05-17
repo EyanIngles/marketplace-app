@@ -83,7 +83,7 @@ export const loadNftBalance = async (nft, provider, chainId, account, dispatch) 
     dispatch(setNftBalance(nftBalance))
 }
 // listnft Loader
-export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, price, dispatch) => {
+export const loadListNft = async (nft, marketplace, provider, chainId, dispatch) => {
     // get signer
     const signer = await provider.getSigner()
     // load nft
@@ -92,18 +92,16 @@ export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, 
     const nftAddress = await nft.getAddress()
     // declare tokenId?
 
+
     // load marketplace
     marketplace = await loadMarketplace(provider, chainId, dispatch)
     // declare marketplace address
     const marketplaceAddress = await marketplace.getAddress()
     //approve signer to allow transfer to marketplace address
     const approveNft = await nft.connect(signer).approve(marketplaceAddress, tokenId)
-    await approveNft.wait()
     // marketplace list nft
-    const listNFT = await marketplace.connect(signer).listNFT(nftAddress, tokenId, price)
-    await listNFT.wait()
-
-    const listedNft = await listNFT
+    const listNFT = await marketplace.connect(signer).listNFT(nftAddress, )
+    const listedNft = 1
     dispatch(setListNFT(listedNft))
 }
 

@@ -12,7 +12,7 @@ const ListNft = () => {
   const marketplace = useSelector(state => state.marketplace.contract)
   const provider = useSelector(state => state.provider.connection)
 
-  const listHandler = async (e) => {
+  const listHandler = async () => {
     // prevent any auto behaviour from e value.
     e.preventDefault()
 
@@ -20,7 +20,8 @@ const ListNft = () => {
     let nft = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
     let inputPrice = e.target.elements.third.value;
-    let price = ethers.parseEther(inputPrice).toString()
+    const outputPrice = ethers.parseEther(inputPrice).toString()
+    const price = { value: outputPrice };
     console.log(price)
 
 

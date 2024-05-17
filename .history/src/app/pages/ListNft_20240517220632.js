@@ -20,11 +20,12 @@ const ListNft = () => {
     let nft = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
     let inputPrice = e.target.elements.third.value;
-    let price = ethers.parseEther(inputPrice).toString()
+    const outputPrice = ethers.parseEther(inputPrice).toString()
+    const price = { value: outputPrice }
     console.log(price)
 
 
-    await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
+    await loadListNft(nft, marketplace, provider, chainId, tokenId, { value: outputPrice }, dispatch)
 
   }
   listHandler().catch(console.error);

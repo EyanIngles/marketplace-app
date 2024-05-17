@@ -11,6 +11,7 @@ const ListNft = () => {
   const chainId = useSelector(state => state.provider.chainId)
   const marketplace = useSelector(state => state.marketplace.contract)
   const provider = useSelector(state => state.provider.connection)
+  const loadListNft = useSelector(state => state.marketplace.listNFT)
 
   const listHandler = async (e) => {
     // prevent any auto behaviour from e value.
@@ -20,14 +21,12 @@ const ListNft = () => {
     let nft = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
     let inputPrice = e.target.elements.third.value;
-    let price = ethers.parseEther(inputPrice).toString()
-    console.log(price)
+    const price = ethers.parseEther(inputPrice)
 
 
     await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
 
   }
-  listHandler().catch(console.error);
   return (<>
     <div className='form-container'>
     <Form onSubmit={(e) => listHandler(e)}>
