@@ -38,9 +38,8 @@ const BuyNft = () => {
           allListings.push(formattedListing);
         }
 
-        const ID = await marketplace.nextIdListing()
         setListings(allListings)
-        console.log(nft.name)
+        console.log(allListings)
   }
 
   const BuyHandler = async (index) => {
@@ -48,15 +47,13 @@ const BuyNft = () => {
   const listingId = await listings[index].listingId
   const price = await listings[index].price
   const seller = await listings[index].seller
-  const name = await listings[index].name
 
-  //  await loadBuyNft(nft, marketplace, provider, chainId, listingId, price , dispatch)
+  await loadBuyNft(nft, marketplace, provider, chainId, listingId, price , dispatch)
 
   console.log(index)
   console.log(price)
   console.log(listingId)
   console.log(seller)
-  console.log(name)
 }
   return (
 <>

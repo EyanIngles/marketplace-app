@@ -55,9 +55,9 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
         // get struct from mapping
         NFTListing storage listing = nftListings[_listingId];
         // checking that the NFT exists, is not sold already and the buyer has enough in wallet.
-        require(listing.seller != address(0), "Listing does not exist" );
+        //require(listing.seller != address(0), "Listing does not exist" );
         require(listing.sold = true, "NFT already sold");
-        require(listing.price < msg.value, "not enough money");
+        //require(listing.price < msg.value, "not enough money");
         listing.NFT.approve(msg.sender, listing.tokenId);
         listing.NFT.safeTransferFrom(address(this), msg.sender, listing.tokenId);
         listing.sold = true;
