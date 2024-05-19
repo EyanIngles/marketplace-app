@@ -51,19 +51,19 @@ const MintNFT = ()  => {
     <div><br></br>
     <Carousel>
     <Carousel.Item interval={2000}>
-        <img style={{ maxWidth:'23%' }} src={IMAGES1} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES2} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES3} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES4} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES1} alt="NFT-Preview"text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES2} alt="NFT-Preview"text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES3} alt="NFT-Preview"text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES4} alt="NFT-Preview"text="First slide" />
         <Carousel.Caption>
           <h2>DAPP PUNKS</h2>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
-        <img style={{ maxWidth:'23%' }} src={IMAGES5} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES6} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES7} text="First slide" />
-        <img style={{ maxWidth:'23%' }} src={IMAGES8} text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES5} alt="NFT-Preview" text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES6} alt="NFT-Preview" text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES7} alt="NFT-Preview" text="First slide" />
+        <img style={{ maxWidth:'23%' }} src={IMAGES8} alt="NFT-Preview" text="First slide" />
         <Carousel.Caption>
           <h2>DAPP PUNKS</h2>
         </Carousel.Caption>

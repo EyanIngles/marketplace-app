@@ -12,7 +12,7 @@ import MintNft from './app/pages/MintNft';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 // import dispatches
-import { loadAccount, loadNetwork, loadProvider, loadMarketplace, loadNft, loadNftBalance } from './app/reducers/interactions';
+import { loadAccount, loadNetwork, loadProvider, loadNft, loadNftBalance } from './app/reducers/interactions';
 
 
 
@@ -20,6 +20,7 @@ function App() {
   // useSelectors
   // fetching account from useDispatch()
 let account = useSelector(state => state.provider.account);
+const NFTBalance = useSelector(state => state.nft.nftBalance)
 
   // dispatches
 const dispatch = useDispatch();
@@ -27,7 +28,6 @@ const dispatch = useDispatch();
 // useState for loading account and balance
 const [balance, setBalance] = useState(0);
 const [isLoading, setIsLoading] = useState(true)
-
 
 
 const loadBlockchain = async () => {
@@ -47,15 +47,11 @@ const loadBlockchain = async () => {
   balance = ethers.formatEther(balance);
   setBalance(balance.slice(0,7))
 
-  // load marketplace contract to redux store
-  const marketplace = await loadMarketplace(provider, chainId, dispatch)
-
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
-   const cost = await nft.cost()
   if(nft) {
-    //get NFT balance or how many the account has in NFT's and display it on the screen.
-    const nftBalance = await loadNftBalance(nft, provider, chainId, account, dispatch)
+    //get NFT balance or how many the account has in NFT's and display it on redux.
+    await loadNftBalance(nft, provider, chainId, account, dispatch)
   } else {
     window.alert('Error message: unable to load NFT contract and retrieve balance')
     setIsLoading(false)
@@ -82,7 +78,8 @@ const loadBlockchain = async () => {
           className='Identicon mx-2'
           seed={account}/>
           <p>Account: {account.slice(0,6)}...{account.slice(37)}<br></br>
-          Account Balance: {balance} ETH</p><hr></hr>
+          Account Balance: {balance} ETH <br></br>
+          NFT Balance: {NFTBalance}</p><hr></hr>
           </>
         ) : (
           <><h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Connect Wallet</Button><hr></hr></>
