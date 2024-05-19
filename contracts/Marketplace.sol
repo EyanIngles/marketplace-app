@@ -66,4 +66,11 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
         // emitting soldNFT event
         emit soldNft( _listingId, address(listing.NFT), msg.sender, listing.price , true);
     }
+    function fetchListings() public view returns (NFTListing[] memory) {
+        NFTListing[] memory listings = new NFTListing[](nextIdListing - 1);
+    for (uint256 i = 1; i < nextIdListing; i++) {
+        listings[i - 1] = nftListings[i];
+    }
+    return listings;
+    }
 }

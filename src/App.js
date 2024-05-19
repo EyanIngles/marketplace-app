@@ -68,7 +68,6 @@ const loadBlockchain = async () => {
   // useEffect to load blockchain and access blockchain data
   useEffect(() => {
     if(isLoading) {
-      console.log(account)
       loadBlockchain()
     }
   }, [isLoading, account])

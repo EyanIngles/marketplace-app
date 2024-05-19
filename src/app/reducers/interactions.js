@@ -90,7 +90,6 @@ export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, 
     nft = await loadNft(provider, chainId, dispatch)
     // declare nft address
     const nftAddress = await nft.getAddress()
-    // declare tokenId?
 
     // load marketplace
     marketplace = await loadMarketplace(provider, chainId, dispatch)
@@ -106,7 +105,16 @@ export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, 
     const listedNft = await listNFT
     dispatch(setListNFT(listedNft))
 }
+export const loadBuyNft = async (nft, marketplace, provider, chainId, listingId, price, dispatch ) => {
+    const signer = await provider.getSigner()
+    // load nft
+    nft = await loadNft(provider, chainId, dispatch)
+    // load marketplace
+    marketplace = await loadMarketplace(provider, chainId, dispatch)
 
+    // buy NFT
+    const BuyNft = await marketplace.connect(signer).buyNFT(listingId, { value: price})
+    await BuyNft.wait()
+    dispatch(setBuyNFT(BuyNft));
 
-
-// buyNFT loader
+}

@@ -21,21 +21,19 @@ const ListNft = () => {
     let tokenId = e.target.elements.second.value;
     let inputPrice = e.target.elements.third.value;
     let price = ethers.parseEther(inputPrice).toString()
-    console.log(price)
 
 
     await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
 
   }
-  listHandler().catch(console.error);
   return (<>
     <div className='form-container'>
     <Form onSubmit={(e) => listHandler(e)}>
         <Form.Group>
             <Form.Label> List Your NFT Here!</Form.Label>
-            <Form.Control name='first' type="text" placeholder="NFT address"/><br></br>
+            <Form.Control name='first' type="text" placeholder="NFT Address"/><br></br>
             <Form.Control name='second' type="number" placeholder="Token ID"/><br></br>
-            <Form.Control name='third' type="text" placeholder="Price in Eth" />
+            <Form.Control name='third' type="text" placeholder="Price in ETH" />
             <br></br>
             <Button variant="primary" type="submit">List NFT</Button>
         </Form.Group>

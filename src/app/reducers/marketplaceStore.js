@@ -4,8 +4,8 @@ export const marketplace = createSlice({
     name: 'marketplace',
     initialState: {
         contract: 0,
-        listNFT: 0,
-        buyNFT: 0
+        listNFT: [],
+        buyNFT: []
     },
     reducers: {
         setContract: (state, action) => {
