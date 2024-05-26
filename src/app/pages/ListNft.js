@@ -16,6 +16,9 @@ const ListNft = () => {
     // prevent any auto behaviour from e value.
     e.preventDefault()
 
+    if (listHandler) {
+      try{
+
     // convert form submit to values to use.
     let nft = e.target.elements.first.value;
     let tokenId = e.target.elements.second.value;
@@ -23,9 +26,12 @@ const ListNft = () => {
     let price = ethers.parseEther(inputPrice).toString()
 
 
-    await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
-
+        await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
+    } catch {
+      window.alert("rejected or you are not the owner.")
+    }
   }
+}
   return (<>
     <div className='form-container'>
     <Form onSubmit={(e) => listHandler(e)}>

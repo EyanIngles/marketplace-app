@@ -2,7 +2,7 @@ import './App.css';
 import { useSelector, useDispatch } from "react-redux";
 import Blockies from 'react-blockies';
 // bootstrap imports
-import { Button, Tab, Tabs } from 'react-bootstrap';
+import { Button, Tab, Tabs, Card } from 'react-bootstrap';
 // page imports
 import BuyNft from './app/pages/BuyNft';
 import ListNft from './app/pages/ListNft';
@@ -73,13 +73,15 @@ const loadBlockchain = async () => {
       <header >
         { account ? (
           <>
-          <h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Refresh Blockchain</Button><hr></hr>
-          <h4></h4><Blockies
+          <h1>NFT Marketplace</h1><hr></hr>
+          <Card style={{ maxWidth: '100%', maxHeight: '50%', contentAlign: 'center'}}><Blockies
           className='Identicon mx-2'
-          seed={account}/>
+          seed={account}
+          style={{ maxWidth: '100%' }}/>
           <p>Account: {account.slice(0,6)}...{account.slice(37)}<br></br>
           Account Balance: {balance} ETH <br></br>
-          NFT Balance: {NFTBalance}</p><hr></hr>
+          NFT Balance: {NFTBalance}</p>
+          </Card><hr></hr>
           </>
         ) : (
           <><h1>NFT Marketplace</h1><Button onClick={loadBlockchain}>Connect Wallet</Button><hr></hr></>
