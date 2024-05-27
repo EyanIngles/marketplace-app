@@ -12,7 +12,7 @@ import MintNft from './app/pages/MintNft';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 // import dispatches
-import { loadAccount, loadNetwork, loadProvider, loadNft, loadNftBalance } from './app/reducers/interactions';
+import { loadAccount, loadNetwork, loadProvider, loadNft, loadNftBalance, loadListNft } from './app/reducers/interactions';
 
 
 
@@ -21,6 +21,8 @@ function App() {
   // fetching account from useDispatch()
 let account = useSelector(state => state.provider.account);
 const NFTBalance = useSelector(state => state.nft.nftBalance)
+const marketplace = useSelector(state => state.marketplace.contract)
+
 
   // dispatches
 const dispatch = useDispatch();
@@ -32,20 +34,24 @@ const [isLoading, setIsLoading] = useState(true)
 
 const loadBlockchain = async () => {
   //load provider
-  const provider = await loadProvider(dispatch)
- // loading network and dispatching the data
-  const chainId = await loadNetwork(dispatch, provider)
+const provider = await loadProvider(dispatch)
+// loading network and dispatching the data
+const chainId = await loadNetwork(dispatch, provider)
+  if(loadBlockchain) {
   // loadAccount
     account = await loadAccount(dispatch)
   // Load account address and reload page when account has been changed.
     window.ethereum.on('accountsChanged', async () => {
     account = await loadAccount(dispatch)
   })
-
   // load account balance in ether
   let balance = await provider.getBalance(account)
   balance = ethers.formatEther(balance);
   setBalance(balance.slice(0,7))
+  } else {
+    window.alert("MetaMask error, Please check site is connected to WEB3 wallet")
+  }
+
 
   // load NFT contract to redux store
   const nft = await loadNft(provider, chainId, dispatch)
@@ -56,7 +62,6 @@ const loadBlockchain = async () => {
     window.alert('Error message: unable to load NFT contract and retrieve balance')
     setIsLoading(false)
   }
-
 
   setIsLoading(false)
   }
@@ -74,10 +79,9 @@ const loadBlockchain = async () => {
         { account ? (
           <>
           <h1>NFT Marketplace</h1><hr></hr>
-          <Card style={{ maxWidth: '100%', maxHeight: '50%', contentAlign: 'center'}}><Blockies
-          className='Identicon mx-2'
-          seed={account}
-          style={{ maxWidth: '100%' }}/>
+          <Card style={{ maxWidth: '100%', maxHeight: '50%', textAlign: 'center'}}><Blockies
+          className='blockie'
+          seed={account}/>
           <p>Account: {account.slice(0,6)}...{account.slice(37)}<br></br>
           Account Balance: {balance} ETH <br></br>
           NFT Balance: {NFTBalance}</p>

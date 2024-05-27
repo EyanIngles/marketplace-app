@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button, Col, Spinner } from 'react-bootstrap';
 import { ethers } from 'ethers'
 
-import { loadBuyNft } from '../reducers/interactions'
+import { loadBuyNft, loadListNft } from '../reducers/interactions'
 
 const BuyNft = () => {
 
@@ -14,15 +14,20 @@ const BuyNft = () => {
   const chainId = useSelector(state => state.provider.chainId)
   const provider = useSelector(state => state.provider.connection)
   const nft = useSelector(state => state.nft.NContract)
+  const nftList = useSelector(state => state.marketplace.listNft)
 
   const marketplace = useSelector(state => state.marketplace.contract)
 
 // add a for loop to add a listing(individual NFT listing visual)
   const ListHandler = async () => {
-        if(loading) {
+        if(ListHandler) {
           try {
-            const listingCount = await marketplace.nextIdListing();
+            // load marketplace listed nfts to be fetched
+            console.log("try statement")
+            const listingCount = await marketplace.nftListings();
+            console.log(marketplace)
             let allListings = [];
+
 
             // Loop through each listing ID and fetch its details
             for (let i = 1; i < listingCount; i++) {
@@ -43,6 +48,7 @@ const BuyNft = () => {
             setLoading(false)
           } catch {
             window.alert('Unable to find any listings, please refresh page or try again later.')
+            setLoading(false)
           }
         }}
 
@@ -61,16 +67,15 @@ if (BuyHandler) {
     window.alert("Insufficient funds or Unavailable NFT, please try again or refresh")
   }
 }}
-useEffect(() => {
-  ListHandler()
-}, []);
   return (
 <>
-{ !loading ? (
+{ loading === false? (
+    <Button onClick={ListHandler}>Loading Data... <Spinner></Spinner></Button>
+) : (
   <div className="card-container"
   style={{ margin: '20px auto' }}>
 {listings.map((listing, index) => (
-<Col key={index} sm={9} md={5} lg={3} xl={2}>
+<Col key={index} sm={9} md={5} lg={5} xl={5}>
           <Card className="mb-4">
             <Card.Img variant="top" src={`${listing.image}`} />
             <Card.Body>
@@ -87,8 +92,6 @@ useEffect(() => {
         </Col>
 ))}
 </div>
-) : (
-  <Button onClick={ListHandler}>Loading Data... <Spinner primary></Spinner></Button>
 )}
 </>
   )
