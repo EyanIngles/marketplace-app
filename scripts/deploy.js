@@ -9,8 +9,8 @@ const hre = require("hardhat");
 async function main() {
   const name = 'Dapp Punks'
   const symbol = 'DP'
-  const cost = ethers.parseUnits('10', 'ether')
-  const maxSupply = 30
+  const cost = ethers.parseUnits('0.025', 'ether')
+  const maxSupply = 100
   const baseURI = 'ipfs://QmQ2jnDYecFhrf3asENjyjZRX1pZSsNWG3qHzmNDvXa9qg/'
   const allowMintingOn = 0 //(Date.now() + 60000).toString().slice(0,10) // slice to take off the miliseconds
 
@@ -21,6 +21,12 @@ async function main() {
   const nft = await NFT.deploy(name, symbol, cost, maxSupply, allowMintingOn, baseURI)
 
   console.log(`NFT deployed to: ${await nft.getAddress()}\n`)
+
+  // Deploy Marketplace
+  console.log(`Deploying Marketplace....`)
+  const MARKETPLACE = await hre.ethers.getContractFactory("Marketplace")
+  const marketplace = await MARKETPLACE.deploy()
+  console.log(`Marketplace Deployed!!: ${await marketplace.getAddress()}`)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

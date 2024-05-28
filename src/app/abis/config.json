@@ -6,5 +6,13 @@
         "marketplace": {
           "address": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512"
         }
+      },
+      "11155111": {
+        "nft": {
+          "address": "0x4392e4956940303f9324679417790Bbb7580F9bC"
+        },
+          "marketplace": {
+            "address": "0x05326C4df2E3e9D21cDC8fE1B55C2c257Da3ea35"
+          }
       }
     }

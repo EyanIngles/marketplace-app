@@ -28,23 +28,21 @@ const MintNFT = ()  => {
   const mintHandler = async (e) => {
     // prevent any auto behaviour from e value.
     e.preventDefault()
-    setMinting(true)
     //try statement
     if(mintHandler) {
       try {
+        setMinting(true)
          // convert form submit to values to use.
     setMintAmount(1)
     // load minting function
     const mint = await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
-
-    setMinting(false)
+    setMintComplete(true)
       } catch {
-        setMinting(false)
+        setMintComplete(false)
         window.alert('Mint rejected or inefficient funds, try again...')
       }
-      setMintComplete(true)
     }
-
+    setMinting(false)
 
   }
   return (<>

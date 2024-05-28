@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button, Col, Spinner } from 'react-bootstrap';
 import { ethers } from 'ethers'
 
-import { loadBuyNft, loadListNft } from '../reducers/interactions'
+import { loadBuyNft, loadListNft, loadMarketplace, loadNft } from '../reducers/interactions'
 
 const BuyNft = () => {
 
@@ -14,7 +14,7 @@ const BuyNft = () => {
   const chainId = useSelector(state => state.provider.chainId)
   const provider = useSelector(state => state.provider.connection)
   const nft = useSelector(state => state.nft.NContract)
-  const nftList = useSelector(state => state.marketplace.listNft)
+  const nftlist = useSelector(state => state.marketplace.listNft)
 
   const marketplace = useSelector(state => state.marketplace.contract)
 
@@ -23,17 +23,23 @@ const BuyNft = () => {
           setLoading(true)
         if(ListHandler) {
           try {
-            const price = await marketplace.price
-            const tokenId = await nftList
-            // load marketplace listed nfts to be fetched
+            // need to load all the nftList and have it accessable
+            await loadMarketplace(provider, chainId, dispatch)
+            await loadNft(provider, chainId, dispatch)
+            console.log(nftlist)
 
+            await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
+            console.log(loadListNft)
+            let price
+            let tokenId
+            console.log( 'hi')
             // need to access the smart contract mapping array and pull data from there
             let allListings = [];
 
-             // await marketplace.nftListings gets access to mapping for event of listings uploaded
+
 
             // Loop through each listing ID and fetch its details
-            for (let i = 1; i < 10; i++) {
+            for (let i = 1; i < listings.length; i++) {
               const listing = await marketplace.nftListings(i);
               const formattedListing = {
                 listingId: listing.listingId,
@@ -74,12 +80,11 @@ if (BuyHandler) {
 ) : (
   <div className="card-container"
   style={{ margin: '20px auto' }}>
-{listings?.map((listing, index) => (
+{listings.map((listing, index) => (
 <Col key={index} sm={9} md={5} lg={5} xl={5}>
           <Card className="mb-4">
-            <Card.Img variant="top" src={`${listing.image}`} />
             <Card.Body>
-            <Card.Title>{`${listing.name}`}</Card.Title>
+            <Card.Title>{`Dapp Punks`}</Card.Title>
             <Card.Title>{`${listing.listingId}`}</Card.Title>
               <Card.Text>
                 Price: {(`${ethers.formatEther(listing.price)}`)} ETH

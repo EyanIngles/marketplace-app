@@ -105,7 +105,7 @@ export const loadListNft = async (nft, marketplace, provider, chainId, tokenId, 
     await listNFT.wait()
 
     const listedNft = await listNFT
-    dispatch(setListNFT(listedNft))
+    dispatch(setListNFT([listedNft]))
 }
 export const loadBuyNft = async (nft, marketplace, provider, chainId, listingId, price, dispatch ) => {
     const signer = await provider.getSigner()
