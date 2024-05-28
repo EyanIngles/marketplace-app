@@ -20,17 +20,20 @@ const BuyNft = () => {
 
 // add a for loop to add a listing(individual NFT listing visual)
   const ListHandler = async () => {
+          setLoading(true)
         if(ListHandler) {
           try {
+            const price = await marketplace.price
+            const tokenId = await nftList
             // load marketplace listed nfts to be fetched
-            console.log("try statement")
-            const listingCount = await marketplace.nftListings();
-            console.log(marketplace)
+
+            // need to access the smart contract mapping array and pull data from there
             let allListings = [];
 
+             // await marketplace.nftListings gets access to mapping for event of listings uploaded
 
             // Loop through each listing ID and fetch its details
-            for (let i = 1; i < listingCount; i++) {
+            for (let i = 1; i < 10; i++) {
               const listing = await marketplace.nftListings(i);
               const formattedListing = {
                 listingId: listing.listingId,
@@ -45,10 +48,10 @@ const BuyNft = () => {
 
             setListings(allListings)
             console.log(allListings)
-            setLoading(false)
+            //setLoading(false)
           } catch {
-            window.alert('Unable to find any listings, please refresh page or try again later.')
-            setLoading(false)
+            console.log('Unable to find any listings, please refresh page or try again later.')
+            setLoading(true)
           }
         }}
 
@@ -60,21 +63,18 @@ if (BuyHandler) {
   const price = await listings[index].price
 
   await loadBuyNft(nft, marketplace, provider, chainId, listingId, price , dispatch)
-  console.log(index)
-  console.log(price)
-  console.log(listingId)
   } catch {
     window.alert("Insufficient funds or Unavailable NFT, please try again or refresh")
   }
 }}
   return (
 <>
-{ loading === false? (
+{ loading ? (
     <Button onClick={ListHandler}>Loading Data... <Spinner></Spinner></Button>
 ) : (
   <div className="card-container"
   style={{ margin: '20px auto' }}>
-{listings.map((listing, index) => (
+{listings?.map((listing, index) => (
 <Col key={index} sm={9} md={5} lg={5} xl={5}>
           <Card className="mb-4">
             <Card.Img variant="top" src={`${listing.image}`} />

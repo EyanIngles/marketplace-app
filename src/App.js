@@ -12,7 +12,7 @@ import MintNft from './app/pages/MintNft';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 // import dispatches
-import { loadAccount, loadNetwork, loadProvider, loadNft, loadNftBalance, loadListNft } from './app/reducers/interactions';
+import { loadAccount, loadNetwork, loadProvider, loadNft, loadNftBalance } from './app/reducers/interactions';
 
 
 
@@ -49,7 +49,7 @@ const chainId = await loadNetwork(dispatch, provider)
   balance = ethers.formatEther(balance);
   setBalance(balance.slice(0,7))
   } else {
-    window.alert("MetaMask error, Please check site is connected to WEB3 wallet")
+    window.alert("MetaMask error, Please try again")
   }
 
 

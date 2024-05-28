@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Form , Button, Carousel } from 'react-bootstrap'
+import { Form , Button, Carousel, Spinner } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadMintNft } from '../reducers/interactions'
 import IMAGES1 from './testImages/img1.png'
@@ -15,6 +15,8 @@ import IMAGES8 from './testImages/img8.png'
 const MintNFT = ()  => {
     // use State for mintamount
     const [mintAmount, setMintAmount] = useState(0)
+    const [minting, setMinting] =  useState(false)
+    const [mintComplete, setMintComplete] = useState(false)
   const dispatch = useDispatch()
 
   const nft = useSelector(state => state.nft.contract)
@@ -26,28 +28,41 @@ const MintNFT = ()  => {
   const mintHandler = async (e) => {
     // prevent any auto behaviour from e value.
     e.preventDefault()
+    setMinting(true)
     //try statement
     if(mintHandler) {
       try {
          // convert form submit to values to use.
     setMintAmount(1)
-
     // load minting function
     const mint = await loadMintNft(provider, nft, chainId, mintAmount, dispatch)
+
+    setMinting(false)
       } catch {
+        setMinting(false)
         window.alert('Mint rejected or inefficient funds, try again...')
       }
+      setMintComplete(true)
     }
+
+
   }
   return (<>
     <div className='form-container'>
-    <Form onSubmit={mintHandler}>
-        <Form.Group>
-            <Form.Label>Mint one of our NFT's here!</Form.Label>
-            <hr></hr>
-            <Button variant="primary" type="submit">Mint NFT</Button>
-        </Form.Group>
-    </Form>
+  { minting ? (
+       <Button disabled><p>Minting NFT! Please wait.</p><Spinner primary></Spinner></Button>
+     ) : (
+          <>
+           <p>Mint one of our NFT's here!</p>
+           <hr></hr>
+           <Button variant="primary" onClick={mintHandler}>Mint NFT</Button>
+           </>
+     )}
+     { !mintComplete ? (
+      <p></p>
+     ) : (
+      window.alert(`CONGRATS! you have successfully minted a DAPP Punk.`)
+     )}
     <div><br></br>
     <Carousel>
     <Carousel.Item interval={2000}>
