@@ -9,10 +9,10 @@
       },
       "11155111": {
         "nft": {
-          "address": "0x4392e4956940303f9324679417790Bbb7580F9bC"
+          "address": "0x71c87e7a23141b21eDA6766Bb82402699E954f48"
         },
           "marketplace": {
-            "address": "0x05326C4df2E3e9D21cDC8fE1B55C2c257Da3ea35"
+            "address": "0x71c87e7a23141b21eDA6766Bb82402699E954f48"
           }
       }
     }
