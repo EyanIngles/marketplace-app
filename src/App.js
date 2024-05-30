@@ -92,19 +92,23 @@ const chainId = await loadNetwork(dispatch, provider)
       defaultActiveKey="profile"
       id="justify-tab-example"
       className="my-3"
-      justify>
+      justify
+      >
         <Tab
         eventKey="home"
         title="List"
-        className='nav'><ListNft></ListNft>
+        className='nav'>
+          <ListNft/>
         </Tab>
         <Tab eventKey="profile"
         title="Buy"
-        className='nav'><BuyNft></BuyNft>
+        className='nav'>
+          <BuyNft/>
         </Tab>
-        <Tab eventKey="longer-tab"
+        <Tab eventKey="Profile"
         title="Mint"
-        className='nav'><MintNft></MintNft>
+        className='nav'>
+          <MintNft/>
         </Tab>
     </Tabs>
     </div>

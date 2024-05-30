@@ -64,7 +64,6 @@
   display: flex;
   justify-content: center; /* Center the tabs horizontally */
   list-style: none;
-  padding: 0 50px; /* Add padding to the left and right */
 }
 
 /* Individual navigation tab styles */
@@ -188,4 +187,4 @@
 .blockie {
   margin-left: 49% ;
   margin-bottom: 10px;
-  }
+}
