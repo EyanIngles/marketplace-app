@@ -35,7 +35,7 @@ const BuyNft = () => {
             let allListings = []
 
             // Loop through each listing ID and fetch its details
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 6; i++) {
               listing = await marketplace.nftListings(i);
               const formattedListing = {
                 listingId: listing.listingId,
@@ -72,7 +72,7 @@ if (BuyHandler) {
   return (
 <>
 { !loading || listings == 0? (
-    <Button onClick={ListHandler}>Loading Data... <Spinner></Spinner></Button>
+    <Button onClick={ListHandler}>Click me to Reload Blockchain <Spinner></Spinner></Button>
 ) : (
   <div className="card-container"
   style={{ margin: '20px auto' }}>
@@ -80,7 +80,7 @@ if (BuyHandler) {
 <Col key={index} sm={9} md={5} lg={5} xl={5}>
           <Card className="mb-4">
             <Card.Body>
-            <Card.Title>{`dapp`}</Card.Title>
+            <Card.Title>{`NFT`}</Card.Title>
             <Card.Title>{`#${listing.tokenId}`}</Card.Title>
               <Card.Text>
                 Price: {(`${ethers.formatEther(listing.price)}`)} ETH
