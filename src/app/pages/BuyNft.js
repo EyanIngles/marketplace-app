@@ -1,9 +1,8 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button, Col, Spinner } from 'react-bootstrap';
 import { ethers } from 'ethers'
-
-import { loadBuyNft, loadListNft, loadMarketplace, loadNft } from '../reducers/interactions'
+import { loadBuyNft, loadMarketplace, loadNft } from '../reducers/interactions'
 
 const BuyNft = () => {
 
@@ -28,8 +27,6 @@ const BuyNft = () => {
             await loadNft(provider, chainId, dispatch)
             console.log(nftlist)
 
-            let price
-            let tokenId
             let listing
             // need to access the smart contract mapping array and pull data from there
             let allListings = []

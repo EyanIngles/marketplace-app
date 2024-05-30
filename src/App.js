@@ -21,8 +21,6 @@ function App() {
   // fetching account from useDispatch()
 let account = useSelector(state => state.provider.account);
 const NFTBalance = useSelector(state => state.nft.nftBalance)
-const marketplace = useSelector(state => state.marketplace.contract)
-
 
   // dispatches
 const dispatch = useDispatch();
@@ -69,7 +67,6 @@ const chainId = await loadNetwork(dispatch, provider)
   // useEffect to load blockchain and access blockchain data
   useEffect(() => {
     if(isLoading) {
-      loadBlockchain()
     }
   }, [isLoading, account])
 
