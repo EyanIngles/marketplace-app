@@ -28,19 +28,15 @@ const BuyNft = () => {
             await loadNft(provider, chainId, dispatch)
             console.log(nftlist)
 
-            await loadListNft(nft, marketplace, provider, chainId, tokenId, price, dispatch)
-            console.log(loadListNft)
             let price
             let tokenId
-            console.log( 'hi')
+            let listing
             // need to access the smart contract mapping array and pull data from there
-            let allListings = [];
-
-
+            let allListings = []
 
             // Loop through each listing ID and fetch its details
-            for (let i = 1; i < listings.length; i++) {
-              const listing = await marketplace.nftListings(i);
+            for (let i = 0; i < 10; i++) {
+              listing = await marketplace.nftListings(i);
               const formattedListing = {
                 listingId: listing.listingId,
                 nftAddress: listing.NFT.toString(),
@@ -75,17 +71,17 @@ if (BuyHandler) {
 }}
   return (
 <>
-{ loading ? (
+{ !loading || listings == 0? (
     <Button onClick={ListHandler}>Loading Data... <Spinner></Spinner></Button>
 ) : (
   <div className="card-container"
   style={{ margin: '20px auto' }}>
-{listings.map((listing, index) => (
+{listings?.map((listing, index) => (
 <Col key={index} sm={9} md={5} lg={5} xl={5}>
           <Card className="mb-4">
             <Card.Body>
-            <Card.Title>{`Dapp Punks`}</Card.Title>
-            <Card.Title>{`${listing.listingId}`}</Card.Title>
+            <Card.Title>{`dapp`}</Card.Title>
+            <Card.Title>{`#${listing.tokenId}`}</Card.Title>
               <Card.Text>
                 Price: {(`${ethers.formatEther(listing.price)}`)} ETH
               </Card.Text>
